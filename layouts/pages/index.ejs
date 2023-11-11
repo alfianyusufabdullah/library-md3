@@ -3,18 +3,9 @@
   <%- include('partials/head', {title: template('branding.prettyName'), formatUrl, pathPrefix}) %>
   <body>
 
-    <header id="masthead" class="masthead" role="banner">
-      <div class="container">
-        <%- include('partials/userTools') %>
-      </div>
-    </header>
-
     <div id="main-search-page">
       <div class="main-item">
-        <%- include('partials/branding', {context: 'home', formatUrl}) %>
-        <div class="tagline">
-          <p><%- template('landing.tagline') %> <%- template('landing.quickLink') %></p>
-        </div>
+
         <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
 
         <div class="featured-cat">
