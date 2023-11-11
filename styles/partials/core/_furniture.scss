@@ -121,19 +121,11 @@
   vertical-align: middle;
   white-space: nowrap;
 
-  @include tablet{
-    width: calc(100% - 20px);
-  }
-  @include desktop{
-    width: calc(100% - 20px);
-  }
-
-
   .tt-menu {
-    background-color: inherit;
-    border-color: $gray-40;
-    border-style: solid;
-    border-width: 0 1px 1px 1px;
+    background: white;
+    margin-top: 10px;
+    border: 1px solid $gray-40;
+    border-radius: 30px;
     // compensate for border
     width: 100%;
     left: -1px !important;
@@ -144,9 +136,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
+    font-weight: normal;
 
     &:hover {
-      background-color: $accent-light;
+      font-weight: bold;
     }
   }
 
@@ -155,6 +148,7 @@
   }
 
   .twitter-typeahead {
+    border-radius: 30px;
     font-style: normal;
     font-family: $font-sans;
     font-size: 16px;
@@ -165,19 +159,8 @@
     height: 50px;
     transition: background-color 0.3s;
     display: inline-block;
-    border: 1px solid $gray-40;
-    background: $white;
-    -webkit-box-shadow: 5px 5px 0px 0px $gray-25;;
-    -moz-box-shadow: 5px 5px 0px 0px $gray-25;;
-    box-shadow: 5px 5px 0px 0px $gray-25;;
-    color: $black;
+    border: 1px solid rgba(153, 153, 153, 0.34);
     float: left;
-    width: calc(100% - 20px);
-    -webkit-transition: background .55s ease;
-    -moz-transition: background .55s ease;
-    -ms-transition: background .55s ease;
-    -o-transition: background .55s ease;
-    transition: background .55s ease;
     padding-left: 15px;
     -webkit-font-smoothing: antialiased;
 
@@ -185,9 +168,7 @@
     &:focus,
     &:active {
       outline: none;
-      background:  $accent-lightest;
     }
-
 
     .tt-hint {
       color: $gray-30;
@@ -206,17 +187,16 @@
     }
   }
 
-
   .icon{
     position: relative;
     z-index: 10;
     border: none;
-    background: $accent;
+    background: transparent;
     height: 50px;
     width: 50px;
     top: 1px; // compensate for top border
     right: 1px; // compensate for right border
-    color: $white;
+    color: #494949;
     opacity: 1;
     font-size: 12pt;
     cursor: pointer;
@@ -226,6 +206,8 @@
     -ms-transition: opacity .35s ease;
     -o-transition: opacity .35s ease;
     transition: opacity .35s ease;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
   }
 
   &:hover {
@@ -465,7 +447,7 @@
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; 
+  align-items: center;
 
   // The inner wrapper allows us to fit the button onto the bottom right
   // corner no matter the image dimenension
