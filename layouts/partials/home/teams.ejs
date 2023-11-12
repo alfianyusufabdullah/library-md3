@@ -1,0 +1,21 @@
+<%
+const {items} = locals
+%>
+
+<div class="col-8">
+    <div class="p-3">
+        <h4 class="text-black fw-bold m-0 ms-1">Dicoding Teams</h4>
+        <div class="d-flex flex-wrap mt-3">
+            <% items.forEach(item => { %>
+                <div class="col-6">
+                    <div class="p-2">
+                        <div class="md-card border">
+                            <h3 class="m-0 mb-3"><%= item.prettyName %></h3>
+                            <small><em>Last update by <%= item.lastModifyingUser.displayName %></em></small>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
