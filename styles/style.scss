@@ -1,4 +1,6 @@
 // top level templating values that can be overridden
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 @import "vars";
 @import "theme";
 
@@ -8,6 +10,8 @@
 @import "core/furniture";
 @import "core/pages";
 @import "core/categories";
+
+@import "material/material";
 
 // final stylesheet with any additional styles for custom logic
 @import "custom";
