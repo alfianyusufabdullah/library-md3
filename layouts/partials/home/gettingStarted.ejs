@@ -4,7 +4,8 @@ const {items} = locals
 
 <div class="col-4">
     <div class="p-3">
-        <div class="md-card getting-started">
+        <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
+        <div class="md-card getting-started mt-3">
             <h4 class="text-white fw-bold m-0">Getting Started</h4>
             <div class="docs d-flex flex-column">
                 <% items.forEach(item => { %>

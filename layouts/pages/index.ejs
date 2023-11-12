@@ -4,12 +4,9 @@
 <body>
 
 <div class="container">
-    <div class="header-section mt-5">
+    <div class="header-section mt-5 ms-3">
         <h1 class="fw-bolder m-0"><%- template("branding.name") %></h1>
         <h5 class="m-0 mt-1"><%- template("landing.tagline") %></h5>
-    </div>
-    <div class="search-section mt-4">
-        <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
     </div>
 
     <div class="home-section">
