@@ -2,12 +2,12 @@
 const {items} = locals
 %>
 
-<div class="col-8">
+<div class="col-12 col-lg-8">
     <div class="p-3">
         <h4 class="m-0 ms-1" style="color: dimgray">Find by Teams</h4>
         <div class="d-flex flex-wrap mt-3">
             <% items.forEach(item => { %>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="p-2">
                         <div class="md-card team-card">
                             <h4 class="m-0 mb-3 fw-bolder"><%= item.prettyName %></h4>
