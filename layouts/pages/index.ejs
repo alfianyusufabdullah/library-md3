@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <%- include('partials/head', {title: template('branding.prettyName'), formatUrl, pathPrefix}) %>
-  <body>
+<%- include('partials/head', {title: template('branding.prettyName'), formatUrl, pathPrefix}) %>
+<body>
 
-    <div id="main-search-page">
-      <div class="main-item">
-
-        <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
-
-        <div class="featured-cat">
-          <% if (modules.length) { 
-            modules.forEach((module, i, all) => {
-          %>
-            <%- include('partials/landingModule', module) %>
-          <%  })  
-          } else { %>
-          <!-- Eventually we might display a warning here about why this space is empty. -->
-          <% } %>
-        </div>
-
-      </div>
-      <%- include('partials/footer', {style: 'homepage', pageType: 'homepage', formatUrl}) %>
+<div class="container">
+    <div class="header-section mt-5">
+        <h1 class="fw-bolder m-0"><%- template("branding.name") %></h1>
+        <h5 class="m-0 mt-1"><%- template("landing.tagline") %></h5>
     </div>
-  </body>
+    <div class="search-section mt-4">
+        <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
+    </div>
+
+    <div class="home-section">
+        <div class="d-flex flex-wrap mt-3">
+            <%- include('partials/home/gettingStarted', modules[1]) %>
+            <%- include('partials/home/teams', modules[0]) %>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
