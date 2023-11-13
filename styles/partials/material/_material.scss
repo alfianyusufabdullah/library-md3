@@ -1,9 +1,23 @@
+.btn {
+  background: white;
+  padding: 12px 18px;
+  border: 2px solid #2d3e50;
+  color: black;
+  border-radius: 30px;
+  margin: 0 8px;
+
+  &:hover {
+    background: #2d3e50;
+    color: white;
+  }
+}
+
 .fw-bolder {
   font-weight: 800 !important;
 }
 
 .team-card {
-  background: #f2f5ff;
+  background: #c0c3cf2e;
 }
 
 .getting-started {
