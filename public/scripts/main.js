@@ -103,7 +103,7 @@ $(document).ready(function() {
 
   function filenameMatcher(q, cb) {
     const substrRegex = new RegExp(q, 'i')
-    const filenames = getFilenameStorage().filenames
+    const filenames = JSON.parse(localStorage.getItem('filenames')).filenames
     cb(filenames.filter((str) => substrRegex.test(str)))
   }
 
