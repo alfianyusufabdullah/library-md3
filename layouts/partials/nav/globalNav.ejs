@@ -1,0 +1,10 @@
+<div class="global-nav bg-white sticky-top" style="min-height: 64px; box-shadow: 0 4px 8px rgb(139 139 139 / 10%);">
+    <div class="container">
+        <div class="d-flex align-items-center" style="padding-top: 6px">
+            <h4 class="fw-bolder m-0"><%- template("branding.name") %></h4>
+            <div class="ms-auto" style="width: 30%;">
+                <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
+            </div>
+        </div>
+    </div>
+</div>
