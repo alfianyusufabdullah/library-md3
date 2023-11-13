@@ -1,50 +1,34 @@
-<div class="g-upper-body">
-  <%- include('search', {formatUrl}) %>
-  <% if (locals.title) { %>
-  <% if (locals.duplicates) { %>
-    <%- include('partials/warning', {message: template('warning.duplicate', locals.duplicates, locals.parentId), formatUrl}) %>
-  <% } %>
-  <h1 class="headline"><%= title %></h1>
-  <div class="kicker">
-    <div class="attribution">
-        <% if (locals.byline) { %>
-          <p>
-            By <span class="author"><%=locals.byline %></span>.
-          </p>
+<div class="container">
+
+    <% if (locals.title) { %>
+        <% if (locals.duplicates) { %>
+            <%- include('partials/warning', {message: template('warning.duplicate', locals.duplicates, locals.parentId), formatUrl}) %>
         <% } %>
-        <% if (locals.lastUpdatedBy || locals.byline) { %>
-          <p>
-            <% if (locals.lastUpdatedBy) { %>
-              Last edited by <span class="author"><%= lastUpdatedBy %></span><span class="date" data-date="<%= locals.modifiedAt %>"></span>.
-            <% } %>
+
+        <div class="text-center mt-4">
+            <h1 class="headline mt-0 fw-bolder"><%= title %></h1>
             <% if (locals.byline) { %>
-              Created <span class="date" data-date="<%= locals.createdAt %>"></span>.
+                <h6 class="m-0">
+                    By <span class="fw-bold"><%= locals.byline %></span>
+                    <% if (locals.lastUpdatedBy) { %>
+                        • Last edited by <span class="fw-bold"><%= lastUpdatedBy %></span> <span class="date"
+                                                                                                 data-date="<%= locals.modifiedAt %>"></span>
+                    <% } %>
+                </h6>
+                <script>
+                    (function () {
+                        $('.date').each(function (i) {
+                            const date = $(this)
+                            const momentDate = moment(date.data('date'))
+                            if (momentDate.isValid()) {
+                                date.html(moment().diff(momentDate, 'years') > 1 ? ` on ${momentDate.format('MMMM D, YYYY')}` : ` ${momentDate.fromNow()}`)
+                                date.attr('title', momentDate.format('MMMM D, YYYY'))
+                            }
+                        })
+                    })()
+                </script>
             <% } %>
-          </p>
-        <% } %>
-        <script>
-          (function() {
-            $('.date').each(function(i) {
-              const date = $(this)
-              const momentDate = moment(date.data('date'))
-              if (momentDate.isValid()) {
-                date.html(moment().diff(momentDate, 'years') > 1 ? ` on ${momentDate.format('MMMM D, YYYY')}` : ` ${momentDate.fromNow()}`)
-                date.attr('title', momentDate.format('MMMM D, YYYY'))
-              }
-            })
-          })()
-        </script>
-      </p>
-    </div>
-
-    <% if (locals.editLink) { %>
-      <div class="tool">
-        <a href="<%- editLink %>" id="edit-button" target="_blank">Edit<i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-      </div>
+        </div>
     <% } %>
-
-  </div>
-  <% } %>
 
 </div>

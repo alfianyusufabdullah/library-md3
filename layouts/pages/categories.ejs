@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <%- include('partials/head', {title: template('landing.viewAll'), formatUrl, pathPrefix}) %>
-  <body>
-    <%- include('partials/header', {parentLinks: [], title: template('landing.viewAll'), formatUrl}) %>
-
-    <div class="g-upper-body">
-      <%- include('partials/nav', {formatUrl}) %>
+<html lang="en">
+<%- include('partials/head', {title: template('landing.viewAll'), formatUrl, pathPrefix}) %>
+<body>
+<%- include('partials/nav/globalNav') %>
+<div class="container">
+    <div class="d-flex flex-wrap py-4">
+        <% all.forEach((category) => { %>
+            <div class="col-lg-3">
+                <div class="md-card team-card m-2" style="min-height: 250px">
+                    <h5 class="m-0 mb-2 fw-bolder"><%- category.prettyName %></h5>
+                    <div class="d-flex flex-column">
+                        <% category.children.forEach(child => {
+                            const resourceType = child.resourceType === 'folder' ? "📂" : "📑"
+                        %>
+                        <a class="text-black text-decoration-none mt-2"
+                           href="<%- formatUrl(child.url) %>"><%- resourceType %> <%- child.name %></a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
     </div>
-
-    <div id="category-page" class="g-body">
-      <div class="g-main-content">
-      <% all.forEach((category) => { %>
-        <%- include('partials/childrenList', {kicker: category.prettyName, children: category.children, link: category.path, formatUrl}) %>
-      <% }) %>
-      </div>
-      <script> seeMoreButton() </script>
-      <%- include('partials/footer', { pageType: 'category_index', formatUrl }) %>
-    </div>
-  </body>
+</div>
+</body>
 </html>

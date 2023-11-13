@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-<html>
-  <%- include('partials/head', {formatUrl, pathPrefix}) %>
-  <body>
-    <h1 class="visually-hidden">Default template</h1>
-    <%- include('partials/header', {formatUrl}) %>
-    <%- include('partials/nav', {formatUrl}) %>
-    <div class="g-body">
-      <div class="g-left-panel">
-        <% if (locals.sections && locals.sections.length) { %>
-          <!-- is this TOC -->
-          <%- include('partials/sectionList', {formatUrl}) %>
-        <% } %>
-        <!-- Hide sibling docs on normal pages -->
-        <!-- <% if (locals.siblings && siblings.length) { %>
-        <%- include('partials/siblingList', {kicker: template('folder.siblingList.heading')}) %>
-        <% } %> -->
-      </div>
+<html lang="en">
+<%- include('partials/head', {formatUrl, pathPrefix}) %>
+<% function truncateWithEllipsis(inputString, maxLength = 30) {
+    if (inputString.length <= maxLength) {
+        return inputString;
+    } else {
+        return inputString.substring(0, maxLength - 3) + '...';
+    }
+} %>
+<body>
+<%- include('partials/nav/globalNav') %>
+<div class="g-body">
+    <div class="g-main-content container py-5">
+        <div class="d-flex">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="m-3">
+                            <div class="md-breadcrumb">
+                                <div class="d-flex flex-row align-items-center">
+                                    <a href="/">Home</a>
+                                    <% locals.parentLinks.forEach(link => { %>
+                                        <div class="ms-2">
+                                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="#7a7a7a"
+                                                      d="M9.71069 18.2929c.39051.3905 1.02371.3905 1.41421 0l4.8874-4.8923c.7804-.7811.7801-2.0469-.0006-2.8277l-4.8904-4.89036c-.3905-.39052-1.0237-.39052-1.41422 0-.39053.39053-.39053 1.02369 0 1.41422l4.18562 4.18564c.3906.3905.3906 1.0237 0 1.4142l-4.18201 4.1821c-.39053.3905-.39053 1.0236 0 1.4142Z"></path>
+                                            </svg>
+                                            <a href="<%- link.url %>"
+                                               title="<% link.name %>"><%- truncateWithEllipsis(link.name) %></a>
+                                        </div>
+                                    <% }) %>
+                                    <div class="ms-2">
+                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                             viewBox="0 0 24 24">
+                                            <path fill="#7a7a7a"
+                                                  d="M9.71069 18.2929c.39051.3905 1.02371.3905 1.41421 0l4.8874-4.8923c.7804-.7811.7801-2.0469-.0006-2.8277l-4.8904-4.89036c-.3905-.39052-1.0237-.39052-1.41422 0-.39053.39053-.39053 1.02369 0 1.41422l4.18562 4.18564c.3906.3905.3906 1.0237 0 1.4142l-4.18201 4.1821c-.39053.3905-.39053 1.0236 0 1.4142Z"></path>
+                                        </svg>
+                                        <span><%- truncateWithEllipsis(locals.title) %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <%- include('partials/nav', {formatUrl}) %>
+                            </div>
+                            <% if (locals.content) { %>
+                                <div class="mt-5">
+                                    <%- content %>
+                                </div>
+                            <% } %>
 
-      <div class="g-main-content">
-        <% if (locals.content) { %>
-        <%- content %>
-        <% } %>
+                            <% if (locals.children && children.length) { %>
+                                <%- include('partials/childrenList', {children, kicker: template('folder.childrenList.kicker', title), formatUrl}) %>
+                            <% } %>
 
-        <% if (locals.children && children.length) { %>
-        <%- include('partials/childrenList', {children, kicker: template('folder.childrenList.kicker', title), formatUrl}) %>
-        <% } %>
-      </div>
-      <%- include('partials/imgModal') %>
-      <%- include('partials/footer', { pageType: 'document', topLevelFolder: url.split('/')[1], formatUrl }) %>
+                            <div class="mt-5">
+                                <%- include('partials/cta/mainContentCTA', { topLevelFolder: url.split('/')[1], formatUrl }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="g-left-panel">
+                    <% if (locals.sections && locals.sections.length) { %>
+                        <!-- is this TOC -->
+                        <%- include('partials/sectionList', {formatUrl}) %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+    <%- include('partials/imgModal') %>
+</div>
+</body>
 </html>
