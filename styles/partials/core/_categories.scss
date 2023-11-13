@@ -91,9 +91,6 @@
 // Body
 //------------------------------------------------------------------------------
 .g-body {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 20px;
 
   .g-left-panel {
     float: left;
@@ -209,15 +206,8 @@
     }
   }
 
-  .g-main-content {
-    border-top: 5px solid $gray-60;
-  }
-
   .playlist-navigation,
   .g-main-content {
-    max-width: 600px;
-    margin: 0px auto 0 auto;
-    padding: 10px 0px;
     word-break: break-word; // force break on very long lines without spaces
 
     table {
