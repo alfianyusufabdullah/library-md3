@@ -6,11 +6,10 @@ const {items} = locals
     <div class="p-3">
         <h4 class="m-0 ms-1" style="color: dimgray">Find by Teams</h4>
         <div class="d-flex flex-wrap mt-3">
-            <% items.forEach(item => {
-            %>
+            <% items.forEach(item => { %>
                 <div class="col-12 col-md-6">
                     <div class="p-2">
-                        <div class="md-card team-card">
+                        <div class="rounded team-card p-3">
                             <h4 class="m-0 mb-3 fw-bolder"><a class="text-black text-decoration-none" href="<%- formatUrl(item.path) %>"><%= item.prettyName %></a></h4>
                             <small><em>Last update by <%= item.lastModifyingUser.displayName %></em></small>
                         </div>
