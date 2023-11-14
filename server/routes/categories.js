@@ -39,6 +39,7 @@ async function handleCategory(req, res) {
     url: req.path,
     title: meta.prettyName,
     lastUpdatedBy: (meta.lastModifyingUser || {}).displayName,
+    photoLink: (meta.lastModifyingUser || {}).photoLink,
     modifiedAt: meta.modifiedTime,
     createdAt: meta.createdTime,
     editLink: meta.mimeType === 'text/html' ? meta.folder.webViewLink : meta.webViewLink,
@@ -68,13 +69,12 @@ async function handleCategory(req, res) {
 
   res.locals.docId = data.id // we need this for history later
   // for docs, fetch the html and then combine with the base data
-  const {html, byline, createdBy, sections} = await fetchDoc(id, resourceType, req)
-
+  const doc = await fetchDoc(id, resourceType, req)
   const renderData = Object.assign({}, baseRenderData, {
-    content: html,
-    byline,
-    createdBy,
-    sections,
+    content: doc.html,
+    byline: doc.byline,
+    createdBy: doc.createdAt,
+    sections: doc.sections,
     formatUrl,
     pathPrefix
   })
