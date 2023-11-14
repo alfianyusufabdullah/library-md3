@@ -6,9 +6,17 @@
   border-radius: 30px;
   margin: 0 8px;
 
+  svg {
+    fill: #2d3e50;
+  }
+
   &:hover {
     background: #2d3e50;
     color: white;
+
+    svg {
+      fill: white;
+    }
   }
 }
 
@@ -17,7 +25,7 @@
 }
 
 .team-card {
-  background: #c0c3cf2e;
+  background: #EFF7FB;
 }
 
 .getting-started {
