@@ -1,22 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('partials/head', {title: template('landing.viewAll'), formatUrl, pathPrefix}) %>
+<% function truncateWithEllipsis(inputString, maxLength = 30) {
+    if (inputString.length <= maxLength) {
+        return inputString;
+    } else {
+        return inputString.substring(0, maxLength - 3) + '...';
+    }
+} %>
 <body>
 <%- include('partials/nav/globalNav') %>
 <div class="container">
-    <div class="d-flex flex-wrap py-4">
+    <div class="py-4">
         <% all.forEach((category) => { %>
-            <div class="col-lg-3">
-                <div class="md-card team-card m-2" style="min-height: 250px">
-                    <h5 class="m-0 mb-2 fw-bolder"><%- category.prettyName %></h5>
-                    <div class="d-flex flex-column">
-                        <% category.children.forEach(child => {
-                            const resourceType = child.resourceType === 'folder' ? "📂" : "📑"
-                        %>
-                        <a class="text-black text-decoration-none mt-2"
-                           href="<%- formatUrl(child.url) %>"><%- resourceType %> <%- child.name %></a>
-                        <% }) %>
-                    </div>
+            <div class="my-4">
+                <h5 class="m-0 mb-2 fw-bolder"><%- category.prettyName %></h5>
+                <div class="d-flex flex-wrap">
+                    <% category.children.forEach(child => { %>
+
+                        <div class="col-3">
+                            <a href="<%- child.url %>" class="text-decoration-none text-black">
+                                <div class="d-flex align-items-center rounded m-1 p-2"
+                                     style="background: #EFF7FB">
+
+                                    <% if (child.resourceType === "folder") { %>
+                                        <svg width="20" height="20" viewBox="0 0 20 20"
+                                             fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.7689 5.61406C17.4464 5.27655 17.039 5.10714 16.5644 5.10714H9.74765L8.0437 3.32712L7.96988 3.25H7.86311H3.43556C2.9609 3.25 2.55353 3.41945 2.23096 3.75705C1.90839 4.0934 1.75 4.51359 1.75 4.99964V15.0004C1.75 15.4865 1.90844 15.907 2.23096 16.2439C2.55361 16.5809 2.96098 16.75 3.43556 16.75H16.5644C17.0392 16.75 17.4468 16.5805 17.7699 16.2429C18.092 15.9065 18.25 15.4863 18.25 15.0004V6.85679C18.25 6.37067 18.0916 5.95043 17.7689 5.61406ZM17.7689 5.61406C17.769 5.61417 17.7691 5.61428 17.7692 5.61439L17.5884 5.78707M17.7689 5.61406C17.7689 5.61404 17.7689 5.61402 17.7689 5.614L17.5884 5.78707M17.5884 5.78707C17.3147 5.50045 16.9733 5.35714 16.5644 5.35714H9.64089M17.5884 5.78707L9.64089 5.35714M9.64089 5.35714L7.86311 3.5H3.43556C3.02667 3.5 2.68533 3.64331 2.41156 3.92993L9.64089 5.35714ZM9.10385 6.45859L9.17768 6.53571H9.28444H16.5644C16.6614 6.53571 16.7252 6.56538 16.7767 6.61923C16.8291 6.67393 16.8611 6.74607 16.8611 6.85679V15.0004C16.8611 15.1111 16.8291 15.1832 16.7767 15.2379C16.7252 15.2918 16.6614 15.3214 16.5644 15.3214H3.43556C3.33863 15.3214 3.27481 15.2918 3.22326 15.2379C3.1709 15.1832 3.13889 15.1111 3.13889 15.0004V4.99964C3.13889 4.88892 3.1709 4.81678 3.22326 4.76209C3.27481 4.70824 3.33863 4.67857 3.43556 4.67857H7.3999L9.10385 6.45859Z"
+                                                  fill="#2D3E50" stroke="#2D3E50"
+                                                  stroke-width="0.5"></path>
+                                            <rect x="3" y="4" width="6" height="12"
+                                                  fill="#D9D9D9"></rect>
+                                            <rect x="3" y="4" width="6" height="12"
+                                                  fill="#2D3E50"></rect>
+                                            <rect x="8" y="6" width="9" height="10"
+                                                  fill="#2D3E50"></rect>
+                                        </svg>
+                                    <% } else { %>
+                                        <svg width="20" height="20" viewBox="0 0 20 20"
+                                             fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M3.33333 18.3334H16.6667C17.1269 18.3334 17.5 17.9603 17.5 17.5001V6.59154C17.5 6.40058 17.4344 6.21541 17.3142 6.06702L14.0001 1.97556C13.8419 1.78022 13.604 1.66675 13.3526 1.66675H3.33333C2.8731 1.66675 2.5 2.03984 2.5 2.50008V17.5001C2.5 17.9603 2.8731 18.3334 3.33333 18.3334ZM13.3333 10.0001H6.66667C6.20643 10.0001 5.83333 9.62699 5.83333 9.16675C5.83333 8.70651 6.20643 8.33342 6.66667 8.33342H13.3333C13.7936 8.33342 14.1667 8.70651 14.1667 9.16675C14.1667 9.62699 13.7936 10.0001 13.3333 10.0001ZM6.66667 13.3334H13.3333C13.7936 13.3334 14.1667 12.9603 14.1667 12.5001C14.1667 12.0398 13.7936 11.6667 13.3333 11.6667H6.66667C6.20643 11.6667 5.83333 12.0398 5.83333 12.5001C5.83333 12.9603 6.20643 13.3334 6.66667 13.3334Z"
+                                                  fill="#2D3E50"></path>
+                                        </svg>
+                                    <% } %>
+
+                                    <span class="ms-2"
+                                          style="word-break: break-all; line-break: anywhere"><%- truncateWithEllipsis(child.name, 30) %></span>
+                                </div>
+                            </a>
+                        </div>
+
+                    <% }) %>
                 </div>
             </div>
         <% }) %>
