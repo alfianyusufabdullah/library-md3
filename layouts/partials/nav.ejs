@@ -5,30 +5,32 @@
             <%- include('partials/warning', {message: template('warning.duplicate', locals.duplicates, locals.parentId), formatUrl}) %>
         <% } %>
 
-        <div class="text-center mt-4">
-            <h1 class="headline mt-0 fw-bolder"><%= title %></h1>
-            <% if (locals.byline) { %>
-                <h6 class="m-0">
-                    By <span class="fw-bold"><%= locals.byline %></span>
-                    <% if (locals.lastUpdatedBy) { %>
-                        • Last edited by <span class="fw-bold"><%= lastUpdatedBy %></span> <span class="date"
-                                                                                                 data-date="<%= locals.modifiedAt %>"></span>
-                    <% } %>
-                </h6>
-                <script>
-                    (function () {
-                        $('.date').each(function (i) {
-                            const date = $(this)
-                            const momentDate = moment(date.data('date'))
-                            if (momentDate.isValid()) {
-                                date.html(moment().diff(momentDate, 'years') > 1 ? ` on ${momentDate.format('MMMM D, YYYY')}` : ` ${momentDate.fromNow()}`)
-                                date.attr('title', momentDate.format('MMMM D, YYYY'))
-                            }
-                        })
-                    })()
-                </script>
-            <% } %>
+        <div class="mt-4">
+            <h1 class="mt-0 fw-bolder" style="font-size: 40px"><%= title %></h1>
+            <div class="d-flex align-items-center">
+                <img src="<%= locals.photoLink %>"
+                     referrerpolicy="no-referrer"
+                     style="width: 40px; height: 40px; border-radius: 50%; border: none !important; padding: 0 !important; margin: 0 !important; cursor: auto !important;"
+                     data-no-overlay alt="profile-picture">
+
+                <div class="d-flex row ms-1">
+                    <small class="text-black-50">Last edited by <span class="date" data-date="<%= locals.modifiedAt %>"></span></small>
+                    <span class="fw-bold"><%= lastUpdatedBy %></span>
+                </div>
+            </div>
+
+            <script>
+                (function () {
+                    $('.date').each(function (i) {
+                        const date = $(this)
+                        const momentDate = moment(date.data('date'))
+                        if (momentDate.isValid()) {
+                            date.html(moment().diff(momentDate, 'years') > 1 ? ` on ${momentDate.format('MMMM D, YYYY')}` : ` ${momentDate.fromNow()}`)
+                            date.attr('title', momentDate.format('MMMM D, YYYY'))
+                        }
+                    })
+                })()
+            </script>
         </div>
     <% } %>
-
 </div>
