@@ -2,15 +2,14 @@
 <html>
 <%- include('partials/head', {title: template('branding.prettyName'), formatUrl, pathPrefix}) %>
 <body>
-
+<%- include('partials/nav/globalNav') %>
+<div class="header-section p-5 text-center" style="background: #E0EFF6">
+    <h1 class="fw-bolder m-0">Selamat datang di Wiki, <%- locals.userGivenName %>!</h1>
+    <p class="m-0 mt-1">Akses mudah ke semua informasi penting tentang Dicoding Indonesia. </p>
+</div>
 <div class="container">
-    <div class="header-section mt-5 ms-3">
-        <h1 class="fw-bolder m-0"><%- template("branding.name") %></h1>
-        <h5 class="m-0 mt-1"><%- template("landing.tagline") %></h5>
-    </div>
-
     <div class="home-section">
-        <div class="d-flex flex-wrap mt-4">
+        <div class=" mt-4">
             <%- include('partials/home/gettingStarted', modules[1]) %>
             <%- include('partials/home/teams', modules[0]) %>
         </div>

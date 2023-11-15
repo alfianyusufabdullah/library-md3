@@ -1,23 +1,63 @@
 <%
-const {items} = locals
+const {items, modules} = locals
 %>
+<div class="p-3">
 
-<div class="col-12 col-lg-4">
-    <div class="p-3">
-        <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
-        <div class="md-card getting-started mt-3">
-            <h4 class="text-white fw-bold m-0">Getting Started</h4>
-            <div class="docs d-flex flex-column">
-                <% items.forEach(item => { %>
-                    <a href="<%= item.path %>">
-                        <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M7 17 17 7m0 0H8m9 0v9"></path>
-                        </svg>
-                        <%= item.prettyName %>
-                    </a>
-                <% }) %>
+    <div class="d-flex flex-wrap">
+        <div class="col-6">
+            <div class="md-card getting-started h-100 me-4 mt-3 position-relative">
+                <div class="position-absolute" style="bottom: 10px; right: 10px">
+                    <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M86.6667 20H20V100H86.6667L96.6667 113.333H140V40H96.6667L86.6667 20Z" fill="white"
+                              fill-opacity="0.05"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M19.9999 13.3333C16.318 13.3333 13.3333 16.318 13.3333 19.9999V99.9999C13.3333 103.682 16.318 106.667 19.9999 106.667H83.3333L91.3333 117.333C92.5923 119.012 94.5682 120 96.6666 120H140C143.682 120 146.667 117.015 146.667 113.333V39.9999C146.667 36.318 143.682 33.3333 140 33.3333H100.787L92.6294 17.0185C91.5002 14.7599 89.1917 13.3333 86.6666 13.3333H19.9999ZM91.9999 95.9999C90.7409 94.3212 88.765 93.3333 86.6666 93.3333H26.6666V26.6666H82.5464L90.7037 42.9813C91.833 45.2399 94.1414 46.6666 96.6666 46.6666H133.333V106.667H99.9999L91.9999 95.9999Z"
+                              fill="#445363"></path>
+                        <path d="M26.6666 146.667L26.6666 20H13.3333V146.667H26.6666Z" fill="#445363"></path>
+                    </svg>
+                </div>
+
+                <h2 class="text-white fw-bold m-0">Mulai dari sini</h2>
+                <div class="docs d-flex flex-column">
+                    <% items.forEach(item => { %>
+                        <a class="text-decoration-none" href="<%= item.path %>">
+                            <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M7 17 17 7m0 0H8m9 0v9"></path>
+                            </svg>
+                            <%= item.prettyName %>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="md-card ms-4 mt-3 h-100 position-relative" style="background: #EFF7FB;">
+                <div class="position-absolute" style="bottom: 10px; right: 10px">
+                    <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M26.6667 146.667H133.333C137.015 146.667 140 143.682 140 140V52.7318C140 51.2041 139.475 49.7228 138.514 48.5357L112.001 15.804C110.735 14.2413 108.832 13.3335 106.821 13.3335H26.6667C22.9848 13.3335 20 16.3183 20 20.0002V140C20 143.682 22.9848 146.667 26.6667 146.667ZM106.667 80.0002H53.3333C49.6514 80.0002 46.6667 77.0154 46.6667 73.3335C46.6667 69.6516 49.6514 66.6668 53.3333 66.6668H106.667C110.349 66.6668 113.333 69.6516 113.333 73.3335C113.333 77.0154 110.349 80.0002 106.667 80.0002ZM53.3333 106.667H106.667C110.349 106.667 113.333 103.682 113.333 100C113.333 96.3183 110.349 93.3335 106.667 93.3335H53.3333C49.6514 93.3335 46.6667 96.3183 46.6667 100C46.6667 103.682 49.6514 106.667 53.3333 106.667Z"
+                              fill="#C3DFED"></path>
+                    </svg>
+                </div>
+
+
+                <h2 class="text-black fw-bold m-0">Dokumen Terbaru</h2>
+                <div class="docs d-flex flex-column mt-3">
+                    <% locals.modules[2].items.forEach(item => { %>
+                        <a class="text-black text-decoration-none mt-2" href="<%= item.path %>">
+                            <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M7 17 17 7m0 0H8m9 0v9"></path>
+                            </svg>
+                            <%= item.prettyName %>
+                        </a>
+                    <% }) %>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
