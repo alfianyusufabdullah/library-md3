@@ -21,6 +21,9 @@ landing:
     - tag: featured
       label: Useful Docs
       style: docs
+    - tag: new
+      label: New Document
+      style: docs
 
 
 # partials/footer
