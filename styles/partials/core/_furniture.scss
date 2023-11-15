@@ -120,6 +120,7 @@
 .search-container {
   vertical-align: middle;
   white-space: nowrap;
+  margin-top: 4px;
 
   .tt-menu {
     background: white;
@@ -148,6 +149,7 @@
   }
 
   .twitter-typeahead {
+    background: white;
     border-radius: 30px;
     font-style: normal;
     font-family: $font-sans;
@@ -156,7 +158,6 @@
     font-weight: 400;
     position: relative;
     width: 100%;
-    height: 50px;
     transition: background-color 0.3s;
     display: inline-block;
     border: 1px solid rgba(153, 153, 153, 0.34);
@@ -192,9 +193,8 @@
     z-index: 10;
     border: none;
     background: transparent;
-    height: 50px;
     width: 50px;
-    top: 1px; // compensate for top border
+    top: 3px; // compensate for top border
     right: 1px; // compensate for right border
     color: #494949;
     opacity: 1;
@@ -208,12 +208,6 @@
     transition: opacity .35s ease;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
-  }
-
-  &:hover {
-    .icon:hover {
-      background: $accent;
-    }
   }
 
   input::-webkit-input-placeholder,
