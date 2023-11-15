@@ -14,7 +14,7 @@
     <div class="g-main-content container pb-5">
         <div class="md-breadcrumb pb-4 pt-5">
             <div class="d-flex flex-row align-items-center">
-                <a href="/">Home</a>
+                <a class="text-decoration-none" href="/">Home</a>
                 <% locals.parentLinks.forEach(link => { %>
                     <div class="ms-2">
                         <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -22,7 +22,7 @@
                             <path fill="#7a7a7a"
                                   d="M9.71069 18.2929c.39051.3905 1.02371.3905 1.41421 0l4.8874-4.8923c.7804-.7811.7801-2.0469-.0006-2.8277l-4.8904-4.89036c-.3905-.39052-1.0237-.39052-1.41422 0-.39053.39053-.39053 1.02369 0 1.41422l4.18562 4.18564c.3906.3905.3906 1.0237 0 1.4142l-4.18201 4.1821c-.39053.3905-.39053 1.0236 0 1.4142Z"></path>
                         </svg>
-                        <a href="<%- link.url %>"
+                        <a class="text-decoration-none" href="<%- link.url %>"
                            title="<% link.name %>"><%- truncateWithEllipsis(link.name) %></a>
                     </div>
                 <% }) %>
@@ -86,7 +86,7 @@
                                                             <% } %>
 
                                                             <span class="ms-2"
-                                                                  style="word-break: break-all; line-break: anywhere"><%- truncateWithEllipsis(child.name, 30) %></span>
+                                                                  style="word-break: break-all; line-break: anywhere"><%- truncateWithEllipsis(child.name, 25) %></span>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -111,14 +111,14 @@
                             <ul>
                                 <% sections.forEach((section) => { %>
                                     <li>
-                                        <a href="<%- section.url %>"><%= section.name %></a>
+                                        <a class="text-decoration-none text-black" href="<%- section.url %>"><%= section.name %></a>
                                     </li>
 
                                     <% if (section.subsections.length) { %>
                                         <ul class="subsection mt-2">
                                             <% section.subsections.forEach((subsection) => { %>
                                                 <li>
-                                                    <a href="<%- subsection.url %>"><%= subsection.name %></a>
+                                                    <a class="text-decoration-none text-black" href="<%- subsection.url %>"><%= subsection.name %></a>
                                                 </li>
                                             <% }) %>
                                         </ul>
