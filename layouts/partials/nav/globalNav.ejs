@@ -1,7 +1,15 @@
-<div class="global-nav bg-white sticky-top" style="min-height: 64px; box-shadow: 0 4px 8px rgb(139 139 139 / 10%);">
+<div class="global-nav sticky-top" style="background: #2D3E50; min-height: 64px;">
     <div class="container">
-        <div class="d-flex align-items-center" style="padding-top: 6px">
-            <h4 class="fw-bolder m-0"><%- template("branding.name") %></h4>
+        <div class="d-flex align-items-center" style="padding-top: 10px">
+            <a href="/" class="text-decoration-none text-white d-flex align-items-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M17 3.00001C17 2.69207 16.8581 2.40131 16.6154 2.2118C16.3727 2.0223 16.0562 1.95518 15.7575 2.02987L3.85667 5.00507C2.81899 5.07855 2 5.94363 2 7.00001V20C2 21.1046 2.89543 22 4 22H20C21.1046 22 22 21.1046 22 20V7.00001C22 5.89544 21.1046 5.00001 20 5.00001H17V3.00001ZM15 5.00001V4.28079L12.1231 5.00001H15ZM20 7.00001H8V20H20V7.00001ZM17 11H10V9H17V11ZM17 15H10V13H17V15Z"
+                          fill="white"></path>
+                </svg>
+
+                <h5 class="ms-3 m-0"><%- template("branding.name") %></h5>
+            </a>
             <div class="ms-auto" style="width: 30%;">
                 <%- include('partials/search', {style: 'homepage', focus: 'autofocus', msgOnFocus: template('search.placeholder'), formatUrl}) %>
             </div>
