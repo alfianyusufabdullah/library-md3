@@ -27,6 +27,7 @@ async function handlePage(req, res) {
   const page = req.params.page || 'index'
   if (!pages.has(page)) return 'next'
 
+  const userGivenName = req.session.passport.user.name.givenName
   const template = `pages/${page}`
   const {q, autocomplete} = req.query
   if (page === 'search' && q) {
@@ -65,7 +66,7 @@ async function handlePage(req, res) {
     const categories = buildDisplayCategories(tree)
     res.format({
       html: () => {
-        res.render(template, {...categories, template: stringTemplate, formatUrl, pathPrefix})
+        res.render(template, {...categories, template: stringTemplate, formatUrl, pathPrefix, userGivenName})
       },
 
       json: () => {
